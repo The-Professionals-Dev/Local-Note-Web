@@ -1,0 +1,687 @@
+﻿:root {
+    --main: darkred;
+    --main-highlight: lightpink;
+    --main-sub: lightcoral;
+    --text: rgb(65, 65, 65);
+    --main-light: white;
+  }
+  
+.flex {
+    display: flex;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space-evenly {
+    justify-content: space-evenly !important;
+}
+
+.side {
+    margin-right: 5px;
+}
+
+.order {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column !important;
+}
+
+.below {
+    margin-bottom: 20px;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.tiny-top {
+    margin-top: 10px;
+}
+
+.tiny-bottom {
+    margin-bottom: 13px;
+}
+
+.row-height-max {
+    vertical-align: top;
+}
+
+.note-content {
+    max-height: 40px;
+    max-width: 75vw;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+/** **/
+
+.Orders--Top, .Topbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Orders--Title, .header {
+    position: absolute;
+    margin-top: 12px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: var(--main);
+    font-weight: 700;
+}
+
+.hidden-column {
+    display: none;
+}
+
+/** Table 관련 **/
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+th:hover {
+    color: #007bff;
+}
+
+th, td {
+    border: 1px solid #ffffff;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    cursor: pointer;
+    background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/** ConditionalCell.js **/
+
+.green-cell {
+    background-color: green;
+    color: white;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 150px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; 
+    left: 50%;
+    margin-left: -75px; 
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/** centering 관련 **/
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+/** height 관련 **/
+
+.mid-height {
+    height: 300px !important;
+}
+
+/** width 관련 **/
+
+.small-width {
+    width: 12%
+}
+
+.max-width {
+    width: 100%;
+    max-width: 100%;
+}
+
+.same-width {
+    width: 649px;
+}
+
+.col-1 {
+    width: 20%;
+}
+
+.limit-width {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: normal; 
+    max-width: 150px;
+    width: 150px; 
+    text-overflow: ellipsis; 
+}
+
+.timestamp-log-width {
+    width: 15vw !important;
+}
+
+.action-log-width {
+    width: 50vw !important;
+}
+
+.limit-width-user {
+    max-width: 150px !important; 
+    width: 50px !important;
+
+}
+
+h2.limit-width {
+    max-width: 600px;
+    width: 600px;
+}
+
+
+.col-2 {
+    width: 80%;
+}
+
+.wide {
+    display: inherit !important;
+}
+
+
+/** button 관련 **/
+
+
+
+/** color 관련 **/
+
+.red {
+    color: darkred;
+}
+
+/**  **/
+
+.Base {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.01);
+    padding-bottom: 10vh;
+    border-radius: 15px;
+}
+
+.Base--Title, .base-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: center;
+}
+
+.Base--Wrapper {
+    padding: 5%;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    width: 100%;
+}
+
+.Base--User, .Base--Pw {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+    padding: 5px;
+}
+
+.Button--Container, .button-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.Base--Signin, .Base--Register, .Button {
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+input {
+    background-color: transparent;
+    box-shadow: none; 
+    border: none; 
+}
+
+.ModalTitle {
+    margin-bottom: 8%;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.Title {
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.bg {
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.bg-color {
+    background-color: #d4d4d4;
+}
+
+.guide-group {
+    display: flex;
+    
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 18px;
+}
+
+.guide-text-i {
+    padding-left: 10px;
+    padding-right: 20px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+/** **/
+
+.black {
+    border-bottom: var(--text) 1px solid !important;
+}
+
+.Modal--Container, .modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+}
+
+.Modal--Inner, .modal-inner {
+    background-color: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 102;
+}
+
+.modal-dt {
+    background-color: white;
+    padding: 100px;
+    max-width: 85vw;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 102;
+}
+
+@media (max-width: 1300px) {
+    .modal-dt {
+        padding: 80px 20px 90px 20px;
+    }
+}
+
+.Modal--Close, .Modal--Regi {
+    border-radius: 3px;
+    border: 0px solid #808080;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.Modal--Button, .modal-button {
+    display: flex;
+    justify-content: right;
+}
+
+.modal-enlarge {
+    padding: 80px;
+}
+
+/* Apply styles to the ReactQuill container */
+.editor-container {
+    width: 100%;
+    max-width: 600px; /* You can adjust the width to your liking */
+    margin: 0 auto; /* Center the editor horizontally */
+}
+
+.quill-editor {
+    min-height: 150px; /* Set a minimum height for the editor */
+    height: 150px; /* Set a fixed height (or max-height if you want to allow resizing) */
+    overflow-y: auto; /* Allow vertical scrolling when content exceeds height */
+    word-wrap: break-word; /* Ensures that long words break and wrap inside the editor */
+    overflow-wrap: break-word; /* Ensures breaking long words and wrapping them */
+}
+
+.ql-editor {
+    white-space: normal !important; /* Ensure the text wraps within the editor area */
+    word-wrap: break-word; /* Break long words if necessary */
+    overflow-wrap: break-word; /* Break long words if necessary */
+    word-break: break-word; /* Another option to prevent overflow by breaking long words */
+}
+
+
+.quill-editor {
+    overflow-y: auto;
+}
+
+.width-log-2 {
+    width: 100%;
+    max-width: 100%;
+
+    overflow-y: auto; /* Allow vertical scrolling when content exceeds height */
+    word-wrap: break-word; /* Ensures that long words break and wrap inside the editor */
+    overflow-wrap: break-word; /* Ensures breaking long words and wrapping them */
+}
+
+
+/* ManualList.js - Manual list display in notes */
+
+.notes-container {
+    display: flex;
+    flex-direction: column; /* ✅ Makes cards full-width */
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.note-card {
+    width: 100%; /* ✅ Stretches each card to full width */
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.note-card:hover {
+    transform: scale(1.02);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+/* NavMenu.js - navbar */
+
+.text-white {
+    color: var(--main-light);
+}
+
+.text-700 {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.navbar {
+    display: flex;
+    background-color: var(--main);
+}
+
+.navbar-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navhover {
+    display: flex;
+    color: var(--main-light);
+    transition: all 0.2s ease-in-out !important;
+}
+
+.navlink span:hover, .navlink .navicon:hover {
+    color: var(--main-highlight) !important;
+}
+
+.navicon {
+    height: 20px;
+    margin: auto;
+    padding-left: 5px;
+}
+
+.navicon:hover {
+    fill: var(--main-highlight) !important;
+    stroke: var(--main-highlight) !important;
+    color: var(--main-highlight) !important;
+}
+
+.navicon-margin {
+    padding-left: 4px !important;
+}
+
+.navlink {
+    color: var(--main-light);
+}
+
+.active-nav {
+    background-color: rgb(90, 0, 0, 0.6);
+    border-radius: 50px;
+    transition: all 0.2s ease-in-out;
+}
+
+.active-nav:active {
+    transform: scale(0.95);
+}
+
+.button {
+    border: none;
+    color: var(--text);
+    font-weight: 500;
+    background: none;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: var(--text) solid 4px;
+}
+
+.button:hover {
+    color: var(--main);
+    font-weight: 600;
+    border-bottom: var(--main) solid 4px;
+}
+
+.searchbar {
+    border: none;
+    color: var(--text);
+    border-bottom: var(--main) solid 2px;
+}
+
+.searchbar:active, .searchbar:focus {
+    border: none;
+    outline: none;
+    border-bottom: var(--main) solid 2px;
+}
+
+.quill {
+    width: 80vw !important;
+    height: 60vh !important;
+    margin-bottom: 55px;
+}
+
+.button-delete, .button-modify, .button-close {
+    margin-right: 8px;
+}
+
+.button-delete {
+    color: rgb(182, 0, 0);
+    border-bottom: rgb(182, 0, 0) solid 4px;
+}
+
+.button-modify {
+    color: #007bff;
+    border-bottom: #007bff solid 4px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.modal-header {
+    font-weight: 700;
+    padding: 0 !important;
+}
+
+.small-text {
+    display: flex;
+    font-size: 11px;
+    justify-content: right;
+    margin-right: 8px;
+}
+
+.note-title {
+    font-weight: 700;
+}
+
+.modal-dt {
+    font-weight: 800;
+}
+
+.table {
+    width: 100%;
+    border-spacing: 0;
+    padding: 10px;
+}
+
+.table thead {
+    color: var(--main);
+    font-weight: bold;
+    text-align: left;
+    border-bottom: var(--main) 3px solid;
+}
+
+.table th {
+    padding: 12px 16px;
+    border-bottom: var(--main) 5px solid;
+}
+
+.table th:hover {
+    color: var(--main-highlight);
+}
+
+.table thead tr:hover {
+    background-color: var(--main-light);
+}
+
+.table tbody tr td {
+    padding: 10px 0px;
+    box-shadow: none !important;
+}
+
+.table tbody tr {
+    background-color: #ffffff;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.table td {
+    text-align: left;
+    width: 100%;
+}
+
+.table input {
+    width: 100px;
+    height: 30px;
+    padding: 4px;
+    border-bottom: var(--main) 2px solid;
+    transition: all 0.2s ease-in-out;
+}
+
+.table input:focus {
+    border: none;
+    outline: none;
+    border-bottom: var(--main) 3px solid;
+}
+
+.margin-left {
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.span-1 {
+    font-weight: 700;
+    color: var(--main);
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.textbox-big {
+    margin-top: 10px;
+    width: 65%;  /* ✅ Makes it full width */
+    height: 100px; /* ✅ Larger height */
+    overflow: auto;
+}
+
+.dt-div {
+    display: flex;
+    flex-direction: column;
+}
