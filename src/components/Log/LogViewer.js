@@ -62,6 +62,10 @@ const LogViewer = () => {
                                         <td className="align-left">
                                             <div className="note-content"
                                                 style={rowStyle}
+                                                dangerouslySetInnerHTML={{ __html: data.logLocation }}>
+                                            </div>
+                                            <div className="note-content"
+                                                style={rowStyle}
                                                 dangerouslySetInnerHTML={{ __html: data.logAction }}>
                                             </div>
                                         </td>

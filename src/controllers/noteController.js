@@ -172,7 +172,13 @@ async function uploadImage(req, res) {
         const tempPath = req.file.path;
         const fileExtension = path.extname(req.file.originalname);
         const newFileName = `${uuidv4()}${fileExtension}`;
-        const targetPath = path.resolve(__dirname, "../../data/uploads", newFileName);
+        const uploadsDir = path.resolve(__dirname, "../../data/uploads");
+
+            if (!fs.existsSync(uploadsDir)) {
+                fs.mkdirSync(uploadsDir, {recursive: true});
+            }
+
+        const targetPath = path.resolve(uploadsDir, newFileName);
 
         await fs.promises.rename(tempPath, targetPath);
         res.json({ message: "File uploaded and saved successfully!", fileName: newFileName });

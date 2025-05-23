@@ -13,6 +13,10 @@ const ManualList = () => {
     const { searchTerm, handleSearch, filteredData } = ReusableComponents(data);
     const quillRef = useRef(null);
 
+    const [sortOption, setSortOption] = useState("date-asc");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10; 
+
     const [isManualCreateOpen, setIsManualCreateOpen] = useState(false);
     const openManualCreate = () => setIsManualCreateOpen(true);
     const closeManualCreate = () => setIsManualCreateOpen(false);
@@ -36,10 +40,6 @@ const ManualList = () => {
     });
 
 
-    /**
-     * CC - useEffect()
-     */
-
     useEffect(() => {
         fetch('http://localhost:5000/local/notes')
             .then(response => response.json())
@@ -51,10 +51,28 @@ const ManualList = () => {
             });
     }, []);
 
+    const sortedData = useMemo(() => {
+        return [...filteredData].sort((a,b) => {
+            switch (sortOption) {
+                case "title-desc":
+                    return b.noteTitle.localeCompare(a.noteTitle);
+                case "date-asc":
+                    return new Date(a.createDate) - new Date(b.createDate);
+                case "date-desc":
+                    return new Date(b.createDate) - new Date(a.createDate);
+                default:
+                    return 0;
+            }
+        })
+    }, [filteredData, sortOption]);    
 
-    /**
-     * CC - handleManualCreate()
-     */
+    const totalPages = Math.ceil(sortedData.length / itemsPerPage);
+    const paginatedData = useMemo(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return sortedData.slice(startIndex, endIndex);
+    }, [sortedData, currentPage]);    
+
 
     const handleManualCreate = async (e) => {
         e.preventDefault();
@@ -133,10 +151,8 @@ const ManualList = () => {
                 console.error('Error fetching data:', error);
             });
     }
-
-
     
-    // Custom function to upload image via API
+
     const handleImageUpload = async () => {
         const input = document.createElement("input");
         input.type = "file";
@@ -178,9 +194,14 @@ const ManualList = () => {
                 image: handleImageUpload,
             },
             container: [
-                [{ header: [1, 2, false] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
                 ['bold', 'italic', 'underline', 'strike', 'blockquote'],
                 [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+                ["code-block"],
+                [{ script: "sub"}, { script: "super" }],
+                [{ color: [] }, { background: [] }],
+                [{ font: [] }],
+                [{ align: [] }],
                 ['link', 'image'],
                 ['clean'],
             ],
@@ -196,13 +217,25 @@ const ManualList = () => {
             <div className="Orders--Top">
                 <button className="button button-create" onClick={() => openManualCreate()} >Create</button>
                 <h3 className="header center">Notes</h3>
-                <input
-                    type="text"
-                    value={searchTerm}
-                    className='searchbar'
-                    onChange={handleSearch}
-                    placeholder="Search..."
-                />
+                <div>    
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        className='searchbar'
+                        onChange={handleSearch}
+                        placeholder="Search..."
+                    />
+                    <select
+                        className="sort-controls"
+                        onChange={(e) => setSortOption(e.target.value)}
+                        value={sortOption}
+                    >
+                        <option value="date-asc">Old to New</option>
+                        <option value="date-desc">New to Old</option>
+                        <option value="title-asc">Ascending Order</option>
+                        <option value="title-desc">Descending Order</option>
+                    </select>
+                </div>
             </div>
 
             {isManualCreateOpen ? (
@@ -237,7 +270,6 @@ const ManualList = () => {
               <></>  
             )}
 
-            {/* Modal - only shown when isModalOpen is true */}
             {isManualViewOpen && selectedNote && (
                 <ManualListView
                     onClose={closeManualView}
@@ -248,49 +280,30 @@ const ManualList = () => {
             )}
 
             <div className="notes-container">
-                {filteredData.map(note => (
+                {paginatedData.map(note => (
                     <div key={note.id} className="note-card" onClick={() => openManualView(note)}>
                         <h3>{note.noteTitle}</h3>
                         <div className="note-content" dangerouslySetInnerHTML={{ __html: note.noteContent.substring(0, 100) }}></div>
                     </div>
                 ))}
             </div>
+            <div className="pagination-controls">
+                <button
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </button>
+                <span>Page {currentPage} of {totalPages}</span>
+                <button
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 }
 
 export default ManualList
-
-
-{/* 
-    import ManualListCreate from './ManualListCreate.js';
-    <ManualListCreate
-        isOpen={isManualCreateOpen}
-        onClose={closeManualCreate}
-        onSubmit={handleManualCreate}
-        note={note}
-        setNote={setNote}
-    />
-
-    // backup
-    <div>
-        <table className='table table-striped' aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th className="col-1">Title</th>
-                    <th className="col-2">Contents</th>
-                </tr>
-            </thead>
-            <tbody>
-                {filteredData.map(note => (
-                    <tr className="row-height-max" key={note.id} onClick={() => openManualView(note)} style={{ cursor: "pointer" }}>
-                        <td className="align-left limit-width">{note.noteTitle}</td>
-                        <td className="align-left">
-                            <div className="note-content" dangerouslySetInnerHTML={{ __html: note.noteContent.substring(0, 100) }}></div>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    </div> 
-*/}

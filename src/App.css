@@ -685,3 +685,44 @@ input {
     display: flex;
     flex-direction: column;
 }
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.pagination-controls button {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    cursor: pointer;
+    border-radius: 50px;
+    background-color: var(--main);
+    border: 2px solid var(--main);
+    color: var(--main-light);
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+
+.pagination-controls button:hover {
+    background-color: var(--main-sub);
+    border: 2px solid var(--main-sub);
+}
+
+.sort-controls {
+    margin-left: 10px;
+    
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 50px;
+    
+    background-color: var(--main);
+    border: 2px solid var(--main);
+    color: var(--main-light);
+}
